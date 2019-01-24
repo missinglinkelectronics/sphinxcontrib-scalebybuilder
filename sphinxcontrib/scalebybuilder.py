@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    sphinxcontrib.condimgscale
+    sphinxcontrib.scalebybuilder
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Scale images and figures differently depending on the builder.
+    Set scaling factor of images and figures depending on the builder.
 
-    :copyright: Copyright 2018 by Stefan Wiehler
+    :copyright: Copyright 2018-2019 by Stefan Wiehler
                 <stefan.wiehler@missinglinkelectronics.com>.
     :license: BSD, see LICENSE for details.
 """
@@ -22,20 +22,19 @@ if False:
     from typing import Any, Dict  # NOQA
     from sphinx.application import Sphinx  # NOQA
 
+
 logger = logging.getLogger(__name__)
 
-builders = {}
 
-
-class ConditionallyScaledImage(images.Image):
+class ImageScaledByBuilder(images.Image):
     option_spec = images.Image.option_spec.copy()
 
 
-class ConditionallyScaledFigure(images.Figure):
+class FigureScaledByBuilder(images.Figure):
     option_spec = images.Figure.option_spec.copy()
 
 
-class ConditionalImageScaler(SphinxTransform):
+class ScaleByBuilder(SphinxTransform):
     default_priority = 410
 
     def apply(self):
@@ -49,9 +48,11 @@ class ConditionalImageScaler(SphinxTransform):
 def setup(app):
     # type: (Sphinx) -> Dict[unicode, Any]
     for builder_name in app.registry.builders.keys():
-        ConditionallyScaledImage.option_spec['scale-' + builder_name] = directives.percentage
-        ConditionallyScaledFigure.option_spec['scale-' + builder_name] = directives.percentage
-    directives.register_directive('image', ConditionallyScaledImage)
-    directives.register_directive('figure', ConditionallyScaledFigure)
-    app.add_post_transform(ConditionalImageScaler)
-    return {'version': '0.9.0', 'parallel_read_safe': True}
+        scale = 'scale-' + builder_name
+        ImageScaledByBuilder.option_spec[scale] = directives.percentage
+        FigureScaledByBuilder.option_spec[scale] = directives.percentage
+    directives.register_directive('image', ImageScaledByBuilder)
+    directives.register_directive('figure', FigureScaledByBuilder)
+    app.add_post_transform(ScaleByBuilder)
+
+    return {'version': '0.1.0', 'parallel_read_safe': True}
