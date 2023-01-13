@@ -15,7 +15,7 @@ setup(
     download_url='https://pypi.org/project/sphinxcontrib-scalebybuilder',
     license='BSD',
     author='Stefan Wiehler',
-    author_email='stefan.wiehler@missinglinkelectronics.com',
+    author_email='sphinx_contribute@missinglinkelectronics.com',
     description='Sphinx scale image by builder extension',
     long_description=long_desc,
     zip_safe=False,

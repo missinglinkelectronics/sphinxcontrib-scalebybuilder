@@ -5,8 +5,8 @@
 
     Set scaling factor of images and figures depending on the builder.
 
-    :copyright: Copyright 2018-2019 by Stefan Wiehler
-                <stefan.wiehler@missinglinkelectronics.com>.
+    :copyright: Copyright 2018-2023 by Stefan Wiehler
+                <sphinx_contribute@missinglinkelectronics.com>.
     :license: BSD, see LICENSE for details.
 """
 
