@@ -10,7 +10,7 @@ requires = ['Sphinx>=1.6']
 
 setup(
     name='sphinxcontrib-scalebybuilder',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/missinglinkelectronics/sphinxcontrib-scalebybuilder',
     download_url='https://pypi.org/project/sphinxcontrib-scalebybuilder',
     license='BSD',
